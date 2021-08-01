@@ -30,7 +30,7 @@
                             <p class="numero">$30</p>
                             <ul>
                                 <li>bocadillos gratis</li>
-                                <li>Todas las conferrencias</li>
+                                <li>Todas las conferencias</li>
                                 <li>Todos los talleres</li>
                             </ul>
                             <div class="orden">
@@ -68,7 +68,7 @@
                             <div class="orden">
                                 <label for="pase_dos_dias">Boletos deseados</label>
                                 <input type="number" min="0" id="pase_dos_dias" size="3" name="boletos[dos_dias][cantidad]" placeholder="0">
-                                <input type="hidden" value="45" name="boletos[dos_completo][precio]">
+                                <input type="hidden" value="45" name="boletos[dos_dias][precio]">
                             </div>
                         </div>
                     </li><!-- dos-dias -->

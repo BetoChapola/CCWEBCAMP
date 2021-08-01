@@ -22,6 +22,7 @@ use PayPal\Api\Transaction;
 require 'includes/paypal.php';
 
 if (isset($_POST['submit'])) :
+
     // Agregar las variables que usaremos:
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
@@ -29,29 +30,51 @@ if (isset($_POST['submit'])) :
     $regalo = $_POST['regalo'];
     $total = $_POST['total_pedido'];
     $fecha = date('Y-m-d H:i:s');
-    //pedidos
+
+    //boletos
     $boletos = $_POST['boletos'];
     $numero_boletos = $boletos;
+    // $numero_boletos se vuelve un array:
+/*    array (size=3)
+        'un_dia' => 
+             array (size=2)
+                'cantidad' => string '' (length=1)
+                'precio' => string '30' (length=2)
+        'pase_completo' => 
+             array (size=2)
+                'cantidad' => string '' (length=0)
+                'precio' => string '50' (length=2)
+        'dos_dias' => 
+            array (size=2)
+                'cantidad' => string '' (length=0)
+                'precio' => string '45' (length=2) 
+*/
+
+    // Pedidos extra
+    $pedido_extra = $_POST['pedido_extra'];
+    // $pedido_extra se vuelve en un array
+/*   array (size=2)
+         'camisas' => 
+             array (size=2)
+                 'cantidad' => string '1' (length=1)
+                 'precio' => string '10' (length=2)
+         'etiquetas' => 
+             array (size=2)
+                 'cantidad' => string '1' (length=1)
+                 'precio' => string '2' (length=1)
+*/
     $camisas = $_POST['pedido_extra']['camisas']['cantidad'];
     $precioCamisa= $_POST['pedido_extra']['camisas']['precio'];
     $etiquetas = $_POST['pedido_extra']['etiquetas']['cantidad'];
     $precioEtiquetas = $_POST['pedido_extra']['etiquetas']['precio'];
+
+    // Union de 2 arrays
     include_once 'includes/funciones/funciones.php';
-    // $pedido = productos_json($boletos, $camisas, $etiquetas); 
-    // TUVE QUE COMENTAR LA FUNCION EN EL ARCHIVO
-    // funciones.php YA QUE CAUSABA UN CONFLICTO. AUNQUE CREO QUE BASTABA CON COMENTAR ESTA LINEA
-    // O SEA IMPEDIR EL LLAMADO A LA FUNCION.
+    $pedido = productos_json($boletos, $camisas, $etiquetas); 
+
     //eventos
     $eventos = $_POST['registro'];
     $registro = eventos_json($eventos);
-
-//     echo "<pre>";
-//     var_dump($_POST);
-//     echo "</pre>";
-// exit;
-endif;
-
-
 
     //Prepared Statements (una forma mas segura de insertar datos en SQL)
     //Previene la inyección SQL
@@ -65,19 +88,18 @@ endif;
             "ssssssis", $nombre, $apellido, $email, $fecha, $pedido, $registro, $regalo, $total
         );
         $stmt->execute();
+        $ID_registro = $stmt->insert_id;
         $stmt->close();
+        $conn->close();
         //Para evitar que los datos se queden en memoria y se vualvan a insertar en la tabla con F5
         //Usaremos la redirecion con header(); al final estaremos enviando a la misma pagina pero con
         //un valor diferente al final (?exitoso=1)
-        header('Location: validar_registro.php?exitoso=1');
+        // header('Location: validar_registro.php?exitoso=1');
     } catch (\Exception $e) {
         echo $e->getMessage();
     }
 
-
-
-
-
+endif;
 
 
 // Instanciamos la clase Payer();
@@ -87,38 +109,96 @@ $compra->setPaymentMethod('paypal');
 
 
 // Item();
-$articulo = new Item();
-$articulo->setName($producto)
-         ->setCurrency('MXN')
-         ->setQuantity(1)
-         ->setPrice($precio);
+// $articulo = new Item();
+// $articulo->setName($producto)
+//          ->setCurrency('MXN')
+//          ->setQuantity(1)
+//          ->setPrice($precio);
 
+$i=0;
+// Creamos el arreglo_pedido para poder guardar los arreglos de los boletos y de los pedidos extra. (Un arreglo de 2 arreglos)
+$arreglo_pedido = array();
+foreach ($numero_boletos as $key => $value) {
+    // Ver los valores del array para entender las referencias.
+    if ((int) $value['cantidad'] > 0) {
+        ${"articulo$i"} = new Item();
+        $arreglo_pedido[] = ${"articulo$i"};
+        ${"articulo$i"}->setName('Pase: '.$key)
+                        ->setCurrency('USD')
+                        ->setQuantity((int) $value['cantidad'])
+                        ->setPrice((int) $value['precio']);
+        $i++;
+    }
+}
 
-/*
+foreach ($pedido_extra as $key => $value) {
+    // Ver los valores del array para entender las referencias.
+    if ((int) $value['cantidad'] > 0) {
+
+        if ($key == 'camisas') {
+            $precio = (float) $value['precio'] * .93;
+        }else{
+            $precio = (int) $value['precio'];
+        }
+
+        ${"articulo$i"} = new Item();
+        $arreglo_pedido[] = ${"articulo$i"};
+        ${"articulo$i"}->setName('Extras: '.$key)
+                        ->setCurrency('USD')
+                        ->setQuantity((int) $value['cantidad'])
+                        ->setPrice($precio);
+        $i++;
+    }
+}
+
 // Lista de todos los artículos que le vamos a cobrar al cliente guardados en un array();
 $listaArticulos = new ItemList();
-$listaArticulos->setItems(array($articulo));
-
-// Agregamos los detalles de la venta
-$detalles = new Details();
-$detalles->setShipping($envio)
-         ->setSubtotal($precio);
-
+$listaArticulos->setItems($arreglo_pedido);
+// $arreglo_pedido es un super arreglo:
+/*array (size=3)
+  0 => 
+    object(PayPal\Api\Item)[8]
+      private '_propMap' (PayPal\Common\PayPalModel) => 
+        array (size=4)
+          'name' => string 'Pase: un_dia' (length=12)
+          'currency' => string 'USD' (length=3)
+          'quantity' => int 1
+          'price' => string '30' (length=2)
+  1 => 
+    object(PayPal\Api\Item)[9]
+      private '_propMap' (PayPal\Common\PayPalModel) => 
+        array (size=4)
+          'name' => string 'Extras: camisas' (length=15)
+          'currency' => string 'USD' (length=3)
+          'quantity' => int 1
+          'price' => string '9.30' (length=4)
+  2 => 
+    object(PayPal\Api\Item)[10]
+      private '_propMap' (PayPal\Common\PayPalModel) => 
+        array (size=4)
+          'name' => string 'Extras: etiquetas' (length=17)
+          'currency' => string 'USD' (length=3)
+          'quantity' => int 1
+          'price' => string '2' (length=1)
+*/
 
 $cantidad = new Amount();
-$cantidad->setCurrency('MXN')
+$cantidad->setCurrency('USD')
          ->setTotal($total) // Se deben incluir todos los conceptos de cobro (tax, gasto de envío, comisión etc)
          ->setDetails($detalles);
 
 $transaccion = new Transaction();
 $transaccion->setAmount($cantidad)
             ->setItemList($listaArticulos)
-            ->setDescription('Pago ')
-            ->setInvoiceNumber(uniqid());
+            ->setDescription('Pago CCWEBCAMP ')
+            ->setInvoiceNumber($ID_registro);
 
 $redireccionar = new RedirectUrls();
-$redireccionar->setReturnUrl(URL_SITIO."/pago_finalizado.php?exito=true")
-              ->setCancelUrl(URL_SITIO."/pago_finalizado.php?exito=false");
+$redireccionar->setReturnUrl(URL_SITIO."/pago_finalizado.php?exito=true&id_pago={$ID_registro}")
+              ->setCancelUrl(URL_SITIO."/pago_finalizado.php?exito=falseid_pago={$ID_registro}");
+
+
+
 
 $pago = new Payment();
 $pago->setIntent("sale")
@@ -139,4 +219,3 @@ try {
 $aprobado = $pago->getApprovalLink();
 
 header("Location: {$aprobado}");
-*/
