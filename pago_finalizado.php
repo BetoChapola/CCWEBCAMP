@@ -5,7 +5,7 @@ use PayPal\Rest\ApiContext;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Payment;
 
-require 'includes/paypal.php'
+require 'includes/paypal.php';
 
 ?>
 <section class="seccion contenedor">
