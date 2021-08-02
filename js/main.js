@@ -14,7 +14,7 @@
         var email = document.getElementById('email');
         
         
-        //campos pasess
+        //campos pases
         var pase_dia = document.getElementById('pase_dia');
         var pase_dos_dias = document.getElementById('pase_dos_dias');
         var pase_completo = document.getElementById('pase_completo');
@@ -23,7 +23,7 @@
         var calcular = document.getElementById('calcular');
         var errorDiv = document.getElementById('error');
         var botonRegistro = document.getElementById('btnRegistro');
-        botonRegistro.disabled = true; //el boton esta desabilitado pero el css lo mantiene con los colores "habilitado". Necesario corregir
+        botonRegistro.disabled = true; //el boton esta deshabilitado pero el css lo mantiene con los colores "habilitado". Necesario corregir
         var lista_productos = document.getElementById('lista_productos');
         var suma = document.getElementById('suma_total');
 
@@ -59,7 +59,7 @@
             }
         }
         
-        /*Esta es otra forma de hacer una funcion de validacion para el registro de usuarios.
+        /*Esta es otra forma de hacer una función de validación para el registro de usuarios.
         
         nombre.addEventListener('blur', function(){
             if(this.value == ''){

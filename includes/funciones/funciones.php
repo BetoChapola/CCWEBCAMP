@@ -7,16 +7,16 @@ function productos_json(&$boletos, &$camisas = 0, &$etiquetas = 0){
         2 => 'pase_2dias'
     );
 
-    /**Combinamos 2 arrays con la funcion array_combine($array1, $array2);
-     * la funcion crea un array combinado:
+    /**Combinamos 2 arrays con la función array_combine($array1, $array2);
+     * la función crea un array combinado:
      * $total_boletos = {'llave' => 'valor'.....'llaveN' => 'valorN'}
-     * $total_boletos = {'un_dia' => '', 'pase_completo => '', 'pase_2dias' => '')
+     * $total_boletos = {'un_dia' => 'valor', 'pase_completo => 'valor', 'pase_2dias' => 'valor')
      * 
      * }
     */
     $total_boletos = array_combine($dias, $boletos);
 
-    //funcion que convierte un array a Json: json_encode();
+    //función que convierte un array a Json: json_encode();
     //1) Creamos un array vacío.
     $json = array();
 
