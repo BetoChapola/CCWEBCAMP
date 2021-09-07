@@ -10,7 +10,7 @@
           <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?php echo $_SESSION['nombre'] ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -111,6 +111,7 @@
         </li>
 
         <!-- ADMINISTRADORES -->
+        <?php if($_SESSION['nivel'] == 1) :?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-unlock-alt"></i>
@@ -120,10 +121,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Agregar</a></li>
+            <li><a href="lista-admin.php"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
+            <li><a href="crear-admin.php"><i class="fa fa-plus-square"></i>Agregar</a></li>
           </ul>
         </li>
+        <?php endif; ?>
 
         <!-- TESTIMONIALES -->
         <li class="treeview">

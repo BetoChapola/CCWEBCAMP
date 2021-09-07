@@ -1,3 +1,13 @@
 .skin-blue .sidebar-menu > li.header{
     color: white;
 }
+
+.login-page{
+    overflow-y: hidden;
+}
+
+.login-page .main-footer{
+    display: none;
+}
+
+/*Necesito hacer unos mediaquerys para arreglar el problema de los cambios del color de los botones cuando se hace mas chica la pantalla*

@@ -28,7 +28,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <span class="hidden-xs">Hola Administrador</span>
+                <span class="hidden-xs">Hola <?php echo $_SESSION['nombre'] ?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -36,7 +36,7 @@
                   <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
-                    Alexander Pierce - Administrador
+                  <?php echo $_SESSION['nombre'] ?> - Administrador
                     <small>Web Developer</small>
                   </p>
                 </li>
@@ -57,18 +57,18 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-success btn-flat">Ajustes</a>
+                    <a href="editar-admin.php?id=<?php echo $_SESSION['id'] ?>" class="btn btn-success btn-flat">Ajustes</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-success btn-flat">Cerrar sesión</a>
+                    <a href="login.php?cerrar_sesion=true" class="btn btn-success btn-flat">Cerrar sesión</a>
                   </div>
                 </li>
               </ul>
             </li>
             <!-- Control Sidebar Toggle Button -->
-            <li>
+            <!-- <li>
               <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </nav>
