@@ -9,7 +9,7 @@ if (isset($_GET['cerrar_sesion'])) {
   }
 }
 
-
+// funciones.php solo tiene la conexion a la BD
 include_once 'funciones/funciones.php';
 include_once 'templates/header.php';
 ?>
@@ -23,6 +23,7 @@ include_once 'templates/header.php';
     <div class="login-box-body">
       <p class="login-box-msg">Inicia Sesión para comenzar</p>
 
+      <!-- Mandamos los datos del usuario a un archivo php para su validación: login-admin.php -->
       <form name="login-admin-form" id="login-admin" method="POST" action="login-admin.php">
         <div class="form-group has-feedback">
           <input type="text" class="form-control" placeholder="Usuario" name="usuario">

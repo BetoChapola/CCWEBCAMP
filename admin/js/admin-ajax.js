@@ -14,12 +14,14 @@ $(document).ready(function () {
 
     // Podemos almacenar los datos en un array de varios objetos, es similar al FormData();
     var datos = $(this).serializeArray();
-    /*la estructura del array serializeArray() es similar a esto:
-      Array(4) [ {…}, {…}, {…}, {…} ]
-      0: Object { name: "usuario", value: "_dato_" }
-      1: Object { name: "nombre", value: "_dato_" }
-      2: Object { name: "password", value: "_dato_" }
-      3: Object { name: "agregar-admin", value: "_dato_" }*/
+      /*
+          la estructura del array serializeArray() es similar a esto:
+          Array(4) [ {…}, {…}, {…}, {…} ]
+          0: Object { name: "usuario", value: "_dato_" }
+          1: Object { name: "nombre", value: "_dato_" }
+          2: Object { name: "password", value: "_dato_" }
+          3: Object { name: "agregar-admin", value: "_dato_" }
+      */
 
 
     $.ajax({
@@ -29,7 +31,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         // Aquí recibímos la respuesta del archivo que esta en la "url: $(this).attr('action')", en este caso es
-        // crear_admin.php.
+        // modelo-admin.php.
         console.log(data);
 
         var resultado = data;

@@ -1,14 +1,22 @@
 <?php
 include_once 'funciones/sesiones.php';
 // *** NOTA***
-// Para que una redirección PHP (include_once 'funciones/sesiones.php';) pueda funcionar NO DEBE HABER ningún código antes.
-include_once 'funciones/funciones.php';
-include_once 'templates/header.php';
-include_once 'templates/barra.php';
-include_once 'templates/navegacion.php';
+// Para que una redirección PHP (ubicada en: include_once 'funciones/sesiones.php') pueda funcionar NO DEBE HABER ningún código antes. En ese archivo existe una validacion para que no se pueda entrar a esta zona si no esta logueado.
+// Pero esa validacion tiene una REDIRECCION, por eso se pone hasta el principio para no generar ningun error.
+include_once 'funciones/funciones.php'; //Tiene la conexion a la BD
+include_once 'templates/header.php'; // Carga todos los archivos de estilos.
+include_once 'templates/barra.php'; // Carga la barra principal que esta en todas las paginas.
+include_once 'templates/navegacion.php'; // Carga el panel lateral de navegación del proyecto.
 ?>
 
+<!-- RECORDAR: que en este nivel ya existen todas las variables de sesion que creamos en el archivo de validacion "login-admin.php": 
+  session_start();
+  $_SESSION['usuario'] = $usuario_admin;
+  $_SESSION['nombre'] = $nombre_admin;
+  $_SESSION['nivel'] = $nivel;
+  $_SESSION['id'] = $id_admin;
 
+-->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

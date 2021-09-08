@@ -111,6 +111,7 @@
         </li>
 
         <!-- ADMINISTRADORES -->
+        <!-- Esta seccion solo la pueden ver los administradores,su nivel es el 1 -->
         <?php if($_SESSION['nivel'] == 1) :?>
         <li class="treeview">
           <a href="#">

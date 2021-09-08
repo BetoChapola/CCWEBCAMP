@@ -84,7 +84,9 @@ if (isset($_POST['registro'])) {
 
         //Verificamos el contenido del campo password antes de actualizarlo
         if (empty($_POST['password'])) {
-            //Viene vacío, NO actualizamos el password. NOTA: https://mariadb.com/kb/en/now/
+            //Viene vacío, NO actualizamos el password. 
+            // NOTA: https://mariadb.com/kb/en/now/
+            // https://stackoverflow.com/questions/68780036/how-to-update-field-using-bind-param-and-mysql-now-function-in-structured-php
             $stmt = $conn->prepare('UPDATE admins SET usuario = ?, nombre = ?  WHERE id_admin = ?');
             $stmt->bind_param("ssi", $usuario, $nombre, $id_registro);
         } else {

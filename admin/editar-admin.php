@@ -5,8 +5,11 @@ include_once 'funciones/sesiones.php';
 include_once 'funciones/funciones.php';
 include_once 'templates/header.php';
 
+// Validamos la existencia de la variable "id", que es enviada por la url y la podemos recuperar por $_GET.
+// De esa forma podemos hacer la consulta para recuperar los datos desde la BD ese usuario.
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
+  // Validamos que lo que recibimos por $_GET sea un entero. Se lee: "SI NO es un ENTERO VALIDO"
   if (!filter_var($id, FILTER_VALIDATE_INT)) {
     die("error");
   }
@@ -43,6 +46,13 @@ include_once 'templates/navegacion.php';
             $resultado = $conn->query($sql);
             $admin = $resultado->fetch_assoc();
             ?>
+
+            <!-- Al momento de presionar el boton "Actualizar" (evento "submit") se envian los datos del formulario
+              "guardar-registro" al archivo "admin-ajax.js. Donde se creara un array (de objetos) para enviar los datos de
+              forma mas segura al archivo "modelo-admin.php". Este archivo php se encarga de hacer las validaciones
+              para poder insertar los datos a la BD. Dando como retorno un json que puede ser utilizado por JS
+              para crear efectos como las ventanas de SweetAlert2.
+             -->
             <form role="form" name="guardar-registro" id="guardar-registro" method="POST" action="modelo-admin.php">
               <!-- .form -->
               <div class="box-body">
