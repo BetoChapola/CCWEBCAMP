@@ -59,8 +59,8 @@
             </span> -->
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Agregar</a></li>
+            <li><a href="lista-evento.php"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
+            <li><a href="crear-evento.php"><i class="fa fa-plus-square"></i>Agregar</a></li>
           </ul>
         </li>
 
@@ -74,8 +74,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Agregar</a></li>
+            <li><a href="lista-categoria.php"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
+            <li><a href="crear-categoria.php"><i class="fa fa-plus-square"></i>Agregar</a></li>
           </ul>
         </li>
 
@@ -90,8 +90,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Agregar</a></li>
+            <li><a href="lista-invitados.php"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
+            <li><a href="crear-invitado.php"><i class="fa fa-plus-square"></i>Agregar</a></li>
           </ul>
         </li>
 
@@ -99,14 +99,14 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-address-book-o"></i>
-            <span>Invitados</span>
+            <span>Registrados</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
-            <li><a href="#"><i class="fa fa-plus-square"></i>Agregar</a></li>
+            <li><a href="lista-registrados.php"><i class="fa fa-list-alt"></i>Ver Todos</a></li>
+            <li><a href="crear-registrados.php"><i class="fa fa-plus-square"></i>Agregar</a></li>
           </ul>
         </li>
 

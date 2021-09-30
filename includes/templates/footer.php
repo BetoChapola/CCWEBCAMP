@@ -49,6 +49,7 @@
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/cotizador.js"></script>
 
   <?php
     $archivo = basename($_SERVER['PHP_SELF']);

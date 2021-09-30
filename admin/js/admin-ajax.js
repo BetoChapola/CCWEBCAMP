@@ -52,10 +52,55 @@ $(document).ready(function () {
     })
   });
 
+    //======================================================================
+  // INSERTAR NUEVO INVITADO (incluye la imagen del invitado)
+  //======================================================================
+  $('#guardar-registro-archivo').on('submit', function (e) {
+    e.preventDefault();
 
+    var datos = new FormData(this);
+
+    $.ajax({
+      type: $(this).attr('method'),
+      data: datos,
+      url: $(this).attr('action'),
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      async: true,
+      cache: false,
+      success: function (data) {
+        // Aquí recibímos la respuesta del archivo que esta en la "url: $(this).attr('action')", en este caso es
+        // modelo-invitado.php.
+        console.log(data);
+
+        var resultado = data;
+        if (resultado.respuesta == 'exito') {
+          Swal.fire(
+            'Correcto!',
+            'El administrador se creo correctamente!',
+            'success'
+          )
+        } else {
+          Swal.fire(
+            'Error!',
+            'Hubo un error!',
+            'error'
+          )
+        }
+      }
+    })
+  });
   //======================================================================
   // ELIMINAR ADMINISTRADOR
   //======================================================================
+
+  /**
+    Borraremos un registro mediante el icono  de borrar que se encuentra en la columna de acciones.
+    El boton tiene una CLASE que funcionará como SELECTOR para poder llamar a la función de borrado.
+    Cuando hacemos click en el icono de borrar se previene la acción del <a></a>.
+  */ 
+
   $('.borrar_registro').on('click', function (e) {
       e.preventDefault();
 
@@ -85,7 +130,7 @@ $(document).ready(function () {
                 url: 'modelo-' + tipo + '.php',
                 success: function (data) {
                     var resultado = JSON.parse(data);
-                    // console.log(resultado);
+                    console.log(resultado);
                     if (resultado.respuesta == 'exito') {
                         Swal.fire(
                           'Eliminado!',

@@ -141,7 +141,7 @@
                     <p class="numero">$30</p>
                     <ul>
                         <li>bocadillos gratis</li>
-                        <li>Todas las conferrencias</li>
+                        <li>Todas las conferencias</li>
                         <li>Todos los talleres</li>
                     </ul>
                     <a href="#" class="button hollow">Comprar</a>

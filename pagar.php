@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) :
     //boletos
     $boletos = $_POST['boletos'];
     $numero_boletos = $boletos;
-    // $numero_boletos se vuelve un array:
+    // $numero_boletos es un array:
 /*    array (size=3)
         'un_dia' => 
              array (size=2)
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) :
 
     // Pedidos extra
     $pedido_extra = $_POST['pedido_extra'];
-    // $pedido_extra se vuelve en un array
+    // $pedido_extra es un array
 /*   array (size=2)
          'camisas' => 
              array (size=2)
@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) :
         $ID_registro = $stmt->insert_id;
         $stmt->close();
         $conn->close();
-        //Para evitar que los datos se queden en memoria y se vualvan a insertar en la tabla con F5
+        //Para evitar que los datos se queden en memoria y se vuelvan a insertar en la tabla con F5
         //Usaremos la redirecion con header(); al final estaremos enviando a la misma pagina pero con
         //un valor diferente al final (?exitoso=1)
         // header('Location: validar_registro.php?exitoso=1');

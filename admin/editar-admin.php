@@ -10,6 +10,8 @@ include_once 'templates/header.php';
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
   // Validamos que lo que recibimos por $_GET sea un entero. Se lee: "SI NO es un ENTERO VALIDO"
+  // https://www.php.net/manual/es/function.filter-var.php
+  // https://www.php.net/manual/es/filter.filters.php
   if (!filter_var($id, FILTER_VALIDATE_INT)) {
     die("error");
   }

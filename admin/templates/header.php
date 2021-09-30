@@ -21,6 +21,16 @@
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/sweetalert2.min.css">
   <link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="css/select2.min.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="css/bootstrap-timepicker.min.css">
+  <!-- Icon Picker -->
+  <link rel="stylesheet" href="css/fontawesome-iconpicker.min.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="css/iCheck.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

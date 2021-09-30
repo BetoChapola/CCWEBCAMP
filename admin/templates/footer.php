@@ -43,10 +43,20 @@ El archivo php hace la validación del login. -->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>
 
-
+<!-- bootstrap datepicker -->
+<script src="js/bootstrap-datepicker.min.js"></script>
+<!-- Select2 -->
+<script src="js/select2.full.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="js/bootstrap-timepicker.min.js"></script>
+<!-- Icon Picker -->
+<script src="js/fontawesome-iconpicker.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="js/demo.js"></script>
 <script src="js/app.js"></script>
+<script src="../js/cotizador.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="js/icheck.min.js"></script>
 </body>
 
 </html>

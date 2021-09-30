@@ -28,7 +28,7 @@ $(document).ready(function () {
   });
 
 
-  $('#crear_registro').attr('disabled', true);
+  $('#crear_registro_admin').attr('disabled', true);
   $('#repetir_password').on('input', function () { //o puede ser on 'blur'
     var password_nuevo = $('#password').val();
 
@@ -37,7 +37,7 @@ $(document).ready(function () {
       $('#resultado_password').text('Correcto');
       $('#resultado_password').parents('.form-group').addClass('has-success').removeClass('has-error');
       $('input#password').parents('.form-group').addClass('has-success').removeClass('has-error');
-      $('#crear_registro').attr('disabled', false);
+      $('#crear_registro_admin').attr('disabled', false);
     }else{
       $('#resultado_password').text('Incorrecto');
       $('#resultado_password').parents('.form-group').addClass('has-error').removeClass('has-success');
@@ -46,4 +46,25 @@ $(document).ready(function () {
   });
 
 
+  //Date picker
+  $('#fecha_evento').datepicker({
+    autoclose: true
+  })
+
+  //Initialize Select2 Elements
+  $('.seleccionar').select2();
+
+  //Timepicker
+  $('.timepicker').timepicker({
+    showInputs: false
+  })
+
+  // Icon Picker
+  $('#icono').iconpicker();
+
+  //Flat red color scheme for iCheck
+  $('input[type="checkbox"].minimal, input[type="radio"].flat-red').iCheck({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass   : 'iradio_flat-blue'
+  })
 })
